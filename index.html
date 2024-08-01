@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET FIT AHL-E-JALAL Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #e0f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        header {
+            background: #00796b;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .login-container, .dashboard-container {
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            padding: 20px;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+        .login-container input, .input-container input, .input-container select, .input-container button {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .login-container button, .input-container button {
+            background: #00796b;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-container button:hover, .input-container button:hover {
+            background: #004d40;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .view-buttons {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>GET FIT AHL-E-JALAL</h1>
+    </header>
+    <div id="loginPage" class="container">
+        <div class="login-container">
+            <h1>Login</h1>
+            <label for="username">Username:</label>
+            <input type="text" id="username">
+            <label for="password">Password:</label>
+            <input type="password" id="password">
+            <button id="login">Login</button>
+            <div id="loginError" class="hidden" style="color: red;">Invalid credentials. Please try again.</div>
+        </div>
+    </div>
+
+    <div id="dashboardPage" class="hidden container">
+        <h1>GET FIT AHL-E-JALAL Dashboard</h1>
+        <div class="input-container">
+            <label for="member">Select Member:</label>
+            <select id="member">
+                <option value="">-- Select Member --</option>
+                <option value="Aafiya">Aafiya</option>
+                <option value="Abdul Haq">Abdul Haq</option>
+                <option value="Afreen">Afreen</option>
+                <option value="Ajmal">Ajmal</option>
+                <option value="Asif">Asif</option>
+                <option value="Asma">Asma</option>
+                <option value="Asma Asad">Asma Asad</option>
+                <option value="Asra">Asra</option>
+                <option value="Athiya">Athiya</option>
+                <option value="Ayisha">Ayisha</option>
+                <option value="Azar">Azar</option>
+                <option value="Fathima">Fathima</option>
+                <option value="Haleema">Haleema</option>
+                <option value="Huzaifa">Huzaifa</option>
+                <option value="Inam">Inam</option>
+                <option value="Ilyas">Ilyas</option>
+                <option value="Kabeer">Kabeer</option>
+                <option value="Kashifa">Kashifa</option>
+                <option value="Masiullah">Masiullah</option>
+                <option value="Nabila">Nabila</option>
+                <option value="Nishath">Nishath</option>
+                <option value="Nuha">Nuha</option>
+                <option value="Osman">Osman</option>
+                <option value="Sadiya">Sadiya</option>
+                <option value="Saif">Saif</option>
+                <option value="Samreen">Samreen</option>
+                <option value="Sumayyah">Sumayyah</option>
+                <option value="Taqi">Taqi</option>
+                <option value="Umar">Umar</option>
+                <option value="Wasil">Wasil</option>
+                <option value="Zafreen">Zafreen</option>
+                <option value="Zaid">Zaid</option>
+                <option value="Zubaida">Zubaida</option>
+            </select>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date">
+            
+            <label for="plantFoods">Plant Foods:</label>
+            <input type="number" id="plantFoods" min="0">
+            
+            <label for="proteinFoods">Protein Foods:</label>
+            <input type="number" id="proteinFoods" min="0">
+            
+            <label for="probioticFoods">Probiotic Foods:</label>
+            <input type="number" id="probioticFoods" min="0">
+            
+            <label for="walkingMins">Walking Minutes:</label>
+            <input type="number" id="walkingMins" min="0">
+            
+            <label for="exerciseMins">Exercise Minutes:</label>
+            <input type="number" id="exerciseMins" min="0">
+            
+            <label for="sleepHours">Sleep Hours:</label>
+            <input type="number" step="0.1" id="sleepHours" min="0">
+            
+            <label for="waterLitres">Water Litres:</label>
+            <input type="number" step="0.1" id="waterLitres" min="0">
+            
+            <label for="meTimeMins">Me Time Minutes:</label>
+            <input type="number" id="meTimeMins" min="0">
+            
+            <label for="volunteer">Volunteer:</label>
+            <select id="volunteer">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+            
+            <label for="junkFoodPenalties">Junk Food Penalties:</label>
+            <input type="number" id="junkFoodPenalties" min="0">
+            
+            <label for="missedWorkoutPenalties">Missed Workout Penalties:</label>
+            <input type="number" id="missedWorkoutPenalties" min="0">
+            
+            <button id="submit">Submit</button>
+            <button id="reset">Reset</button>
+            <button id="save">Save</button>
+            <button id="export">Export</button>
+        </div>
+
+        <div class="view-buttons">
+            <button id="viewDaily">View Daily</button>
+            <button id="viewCumulative">View Cumulative</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="leaderboardChart"></canvas>
+        </div>
+
+        <h2>Leaderboard</h2>
+        <table id="leaderboardTable">
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Plant Points</th>
+                    <th>Protein Points</th>
+                    <th>Probiotic Points</th>
+                    <th>Walking Points</th>
+                    <th>Exercise Points</th>
+                    <th>Sleep Points</th>
+                    <th>Hydration Points</th>
+                    <th>Me Time Points</th>
+                    <th>Volunteer Points</th>
+                    <th>Penalty Points</th>
+                    <th>Total Points</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const memberData = {};
+        let viewMode = 'daily';
+        let chart;
+        const adminCredentials = { username: 'admin', password: 'adminpass' }; // Admin credentials
+        const memberCredentials = { username: 'get fit', password: '123' }; // Updated member credentials
+        let userType = null; // Will be set to 'admin' or 'member' based on login
+
+        document.getElementById('login').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                userType = 'admin';
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('dashboardPage').classList.remove('hidden');
+            } else if (username === memberCredentials.username && password === memberCredentials.password) {
+                userType = 'member';
+                document.getElementById('loginPage').classList.add('hidden');
+                document.getElementById('dashboardPage').classList.remove('hidden');
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('submit').addEventListener('click', function() {
+            if (userType !== 'admin') return;
+
+            const member = document.getElementById('member').value;
+            const date = document.getElementById('date').value;
+            const plantFoods = parseInt(document.getElementById('plantFoods').value, 10) || 0;
+            const proteinFoods = parseInt(document.getElementById('proteinFoods').value, 10) || 0;
+            const probioticFoods = parseInt(document.getElementById('probioticFoods').value, 10) || 0;
+            const walkingMins = parseInt(document.getElementById('walkingMins').value, 10) || 0;
+            const exerciseMins = parseInt(document.getElementById('exerciseMins').value, 10) || 0;
+            const sleepHours = parseFloat(document.getElementById('sleepHours').value) || 0;
+            const waterLitres = parseFloat(document.getElementById('waterLitres').value) || 0;
+            const meTimeMins = parseInt(document.getElementById('meTimeMins').value, 10) || 0;
+            const volunteer = document.getElementById('volunteer').value === 'Yes' ? 5 : 0;
+            const junkFoodPenalties = parseInt(document.getElementById('junkFoodPenalties').value, 10) || 0;
+            const missedWorkoutPenalties = parseInt(document.getElementById('missedWorkoutPenalties').value, 10) || 0;
+
+            const plantPoints = plantFoods;
+            const proteinPoints = proteinFoods;
+            const probioticPoints = probioticFoods;
+            const walkingPoints = walkingMins < 30 ? 0 : walkingMins <= 40 ? 1 : walkingMins <= 60 ? 2 : 3;
+            const exercisePoints = exerciseMins < 10 ? 0 : exerciseMins <= 15 ? 1 : 2;
+            const sleepPoints = sleepHours >= 7 ? 1 : 0;
+            const hydrationPoints = Math.floor(waterLitres);
+            const meTimePoints = meTimeMins < 10 ? 0 : meTimeMins <= 20 ? 1 : 2;
+            const totalPoints = plantPoints + proteinPoints + probioticPoints + walkingPoints + exercisePoints +
+                sleepPoints + hydrationPoints + meTimePoints + volunteer - junkFoodPenalties - missedWorkoutPenalties;
+
+            if (!memberData[member]) {
+                memberData[member] = { dailyPoints: {} };
+            }
+            memberData[member].dailyPoints[date] = {
+                plantPoints, proteinPoints, probioticPoints, walkingPoints, exercisePoints, sleepPoints,
+                hydrationPoints, meTimePoints, volunteerPoints: volunteer, penaltyPoints: junkFoodPenalties + missedWorkoutPenalties,
+                totalPoints
+            };
+
+            updateLeaderboard();
+            updateChart();
+        });
+
+        document.getElementById('reset').addEventListener('click', function() {
+            if (userType !== 'admin') return;
+
+            document.getElementById('date').value = '';
+            document.getElementById('plantFoods').value = '';
+            document.getElementById('proteinFoods').value = '';
+            document.getElementById('probioticFoods').value = '';
+            document.getElementById('walkingMins').value = '';
+            document.getElementById('exerciseMins').value = '';
+            document.getElementById('sleepHours').value = '';
+            document.getElementById('waterLitres').value = '';
+            document.getElementById('meTimeMins').value = '';
+            document.getElementById('volunteer').value = 'No';
+            document.getElementById('junkFoodPenalties').value = '';
+            document.getElementById('missedWorkoutPenalties').value = '';
+        });
+
+        document.getElementById('save').addEventListener('click', function() {
+            if (userType !== 'admin') return;
+
+            localStorage.setItem('memberData', JSON.stringify(memberData));
+        });
+
+        document.getElementById('export').addEventListener('click', function() {
+            if (userType !== 'admin') return;
+
+            const rows = [['Member', 'Date', 'Plant Points', 'Protein Points', 'Probiotic Points', 'Walking Points', 'Exercise Points', 'Sleep Points', 'Hydration Points', 'Me Time Points', 'Volunteer Points', 'Penalty Points', 'Total Points']];
+            for (const member in memberData) {
+                for (const date in memberData[member].dailyPoints) {
+                    const data = memberData[member].dailyPoints[date];
+                    rows.push([
+                        member, date, data.plantPoints, data.proteinPoints, data.probioticPoints,
+                        data.walkingPoints, data.exercisePoints, data.sleepPoints, data.hydrationPoints,
+                        data.meTimePoints, data.volunteerPoints, data.penaltyPoints, data.totalPoints
+                    ]);
+                }
+            }
+            const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(",")).join("\n");
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "fitness_data.csv");
+            document.body.appendChild(link);
+            link.click();
+        });
+
+        function updateLeaderboard() {
+            const tbody = document.querySelector('#leaderboardTable tbody');
+            tbody.innerHTML = '';
+
+            const members = Object.keys(memberData);
+            const sortedMembers = members.sort((a, b) => getTotalPoints(b) - getTotalPoints(a));
+
+            sortedMembers.forEach(member => {
+                const memberPoints = viewMode === 'cumulative' ? getCumulativePoints(member) : getDailyPoints(member);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${member}</td>
+                    <td>${memberPoints.plantPoints || 0}</td>
+                    <td>${memberPoints.proteinPoints || 0}</td>
+                    <td>${memberPoints.probioticPoints || 0}</td>
+                    <td>${memberPoints.walkingPoints || 0}</td>
+                    <td>${memberPoints.exercisePoints || 0}</td>
+                    <td>${memberPoints.sleepPoints || 0}</td>
+                    <td>${memberPoints.hydrationPoints || 0}</td>
+                    <td>${memberPoints.meTimePoints || 0}</td>
+                    <td>${memberPoints.volunteerPoints || 0}</td>
+                    <td>${memberPoints.penaltyPoints || 0}</td>
+                    <td>${memberPoints.totalPoints || 0}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateChart() {
+            const ctx = document.getElementById('leaderboardChart').getContext('2d');
+            if (chart) {
+                chart.destroy();
+            }
+            const labels = Object.keys(memberData).sort();
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Points',
+                    data: labels.map(member => getTotalPoints(member)),
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: { beginAtZero: true },
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+
+        function getDailyPoints(member) {
+            const today = new Date().toISOString().split('T')[0];
+            return memberData[member].dailyPoints[today] || {};
+        }
+
+        function getCumulativePoints(member) {
+            return Object.values(memberData[member].dailyPoints).reduce((acc, data) => {
+                acc.plantPoints = (acc.plantPoints || 0) + data.plantPoints;
+                acc.proteinPoints = (acc.proteinPoints || 0) + data.proteinPoints;
+                acc.probioticPoints = (acc.probioticPoints || 0) + data.probioticPoints;
+                acc.walkingPoints = (acc.walkingPoints || 0) + data.walkingPoints;
+                acc.exercisePoints = (acc.exercisePoints || 0) + data.exercisePoints;
+                acc.sleepPoints = (acc.sleepPoints || 0) + data.sleepPoints;
+                acc.hydrationPoints = (acc.hydrationPoints || 0) + data.hydrationPoints;
+                acc.meTimePoints = (acc.meTimePoints || 0) + data.meTimePoints;
+                acc.volunteerPoints = (acc.volunteerPoints || 0) + data.volunteerPoints;
+                acc.penaltyPoints = (acc.penaltyPoints || 0) + data.penaltyPoints;
+                acc.totalPoints = (acc.totalPoints || 0) + data.totalPoints;
+                return acc;
+            }, {});
+        }
+
+        function getTotalPoints(member) {
+            return getCumulativePoints(member).totalPoints || 0;
+        }
+
+        document.getElementById('viewDaily').addEventListener('click', function() {
+            viewMode = 'daily';
+            updateLeaderboard();
+            updateChart();
+        });
+
+        document.getElementById('viewCumulative').addEventListener('click', function() {
+            viewMode = 'cumulative';
+            updateLeaderboard();
+            updateChart();
+        });
+
+        window.addEventListener('load', function() {
+            const savedData = localStorage.getItem('memberData');
+            if (savedData) {
+                Object.assign(memberData, JSON.parse(savedData));
+                updateLeaderboard();
+                updateChart();
+            }
+        });
+    </script>
+</body>
+</html>
